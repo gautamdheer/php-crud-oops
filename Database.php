@@ -104,8 +104,22 @@ class Database{
     }
 
     // select data
-    public function select(){
+    public function select($table){
+        if($this->tableExists($table)){
+            $sql = "SELECT * FROM $table";
+        }
+    }
+    public function sql($sql){
+        $query = $this->mysqli->query($sql);
 
+        if($query){
+            $this->result =  $query->fetch_all(MYSQLI_ASSOC);
+            return true;
+        }
+        else{
+            array_push($this->result, $this->mysqli->error);
+            return false;
+        }
     }
 
     public function getResult(){
