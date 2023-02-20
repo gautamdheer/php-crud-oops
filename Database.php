@@ -110,7 +110,7 @@ class Database{
         if($this->tableExists($table)){
             $sql = "SELECT $rows FROM $table";
 
-            if($join!=null){
+             if($join!=null){
                 $sql.= " JOIN $join";
             }
             if($where!=null){
@@ -121,8 +121,19 @@ class Database{
             }
             
             if($limit!=null){
-                $sql.= " LIMIT 0, $limit";
+                if(isset($_GET['page'])){
+                    $page = $_GET['page'];
+                }
+                else{
+                    $page = 1;
+                }
+
+                $start = ($page - 1) * $limit;
+
+                $sql.= " LIMIT $start, $limit";
             }
+            
+            echo $sql;
 
             $query = $this->mysqli->query($sql);
 
@@ -134,15 +145,68 @@ class Database{
                 array_push($this->result, $this->mysqli->error);
                 return false;
             }
-
         }
         else{
             return false;
 
         }
     }
+    public function pagination($table,$join=null,$where=null,$limit=null){
+        if($this->tableExists($table)){
+            if($limit != null){
 
+                $sql = "SELECT COUNT(*) FROM $table";
 
+                if($join != null) {
+                    $sql.= " JOIN $join";
+                }
+
+                if($where != null) {
+                    $sql.= "WHERE $where";
+                }
+
+                $query = $this->mysqli->query($sql);
+                $total_record = $query->fetch_array();
+
+                $total_record = $total_record[0];
+
+                $total_page = ceil($total_record / $limit);
+
+                $url = basename($_SERVER['PHP_SELF']); 
+
+                if(isset($_GET['page'])){
+                $page = $_GET['page'];
+                }
+                else{
+                $page = 1;
+                }
+
+                $output = '<ul class="listing">'; 
+                
+                if($total_record > $limit){
+                    for($i=1; $i <= $total_page; $i++) {
+                        if($i == $page){
+                            $cls = "class='active'";
+                        }
+                        else{
+                            $cls = "";
+                        }
+                    $output.= "<li><a $cls href='$url?page=$i'>$i</a></li>";
+                    }
+                }
+                $output .= "</ul>"; 
+                return $output;
+            }
+            
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+ 
+    }
 
     public function sql($sql){
         $query = $this->mysqli->query($sql);
@@ -189,6 +253,8 @@ class Database{
             return false;
         }
     }
+
+
 
 
 }
