@@ -15,9 +15,17 @@ $obj = new Database();
 // echo "<br>Deleted id:-";
 // print_r($obj->getResult());
 
-$obj->sql("Select * from students");
-echo "show all data :-";
+// $obj->sql("Select * from students");
+// echo "show all data :-";
+// echo "<pre>";
+// print_r($obj->getResult());
+// echo "<pre>";
+
+$obj->select('students','*',null,'city="delos"',null);
+echo "SQL result :-";
 echo "<pre>";
 print_r($obj->getResult());
 echo "<pre>";
+
+
 ?>
