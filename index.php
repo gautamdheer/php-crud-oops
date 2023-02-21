@@ -2,6 +2,8 @@
 include "Database.php";
 
 $obj = new Database();
+$columName = "id, student_name, age, city";
+$limit = 2;
 
 // $obj->insert('students', ['student_name'=>'Vishal Dheer','age'=>'28','city'=>'USA']);
 // echo "Insert id:-";
@@ -21,7 +23,7 @@ $obj = new Database();
 // print_r($obj->getResult());
 // echo "<pre>";
 
-$obj->select('students','*',null,null,null,2);
+$obj->select('students',$columName,null,null,null,$limit);
 
 echo "<br><br>";
 echo "SQL result :-";
@@ -29,7 +31,7 @@ $result = $obj->getResult();
 
 // echo "<pre>";print_r($result); echo "</pre>";
 
-echo $obj->pagination('students',null,null,2);
+echo $obj->pagination('students',null,null,$limit);
 
 ?>
 <style>
