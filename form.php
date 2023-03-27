@@ -16,7 +16,7 @@ $result = $obj->getResult();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form </title>
-    <style>
+ <style>
     .container {
         max-width: 1000px;
         margin: auto;
@@ -38,7 +38,7 @@ $result = $obj->getResult();
         margin-bottom: 40px;
         line-height: 1.5;
     }
-    </style>
+ </style>
 </head>
 
 <body>

@@ -14,8 +14,8 @@ class Database{
         if(!$this->conn){
             
             $this->mysqli = new mysqli($this->db_host, $this->db_username, $this->db_password, $this->db_name); 
-
             $this->conn = true; 
+
             if($this->mysqli->connect_error){
                 array_push($this->result, $this->mysqli->connect_error);
                 return false;
@@ -26,7 +26,6 @@ class Database{
         }
     }
     
-    
     // insert data
     public function insert($table, $parms=array()){
          if($this->tableExists($table)){
@@ -35,23 +34,19 @@ class Database{
             $table_value = implode("', '", $parms);
 
             $sql = "INSERT INTO $table ($table_column) VALUES ('$table_value')";
-            $result = $this->mysqli->query($sql);
-
-
+            $result = $this->mysqli->query($sql); 
             
             if($result){
                  array_push($this->result , $this->mysqli->insert_id);
-                 return true;
+                 return true; 
             }
             else{
                 array_push($this->result , $this->mysqli->error);
                 return false;
             }
-
           }
          else{
             return false;
-
         }
     }
 
@@ -65,9 +60,7 @@ class Database{
                 $args[] = "$key = '$value'";
             }
 
-        
              $sql = "UPDATE $table SET ".implode(', ', $args);
-            
              if($where != null){
                 $sql.= " WHERE $table.$where";
              }
@@ -137,7 +130,7 @@ class Database{
             $query = $this->mysqli->query($sql);
 
             if($query){
-                $this->result =  $query->fetch_all(MYSQLI_ASSOC);
+                $this->result = $query->fetch_all(MYSQLI_ASSOC);
                 return true;
             }
             else{

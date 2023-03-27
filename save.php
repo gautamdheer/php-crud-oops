@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
     $age = $_POST['age'];
     $city = $_POST['city'];
     
-    if(!empty($name) || !empty(age) || !empty($city)){
+    if(!empty($name) || !empty($age) || !empty($city)){
         $obj->insert('students',['student_name'=>$name,'age'=>$age,'city'=>$city]);
         echo "Data Inserted";
     }

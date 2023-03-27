@@ -35,43 +35,40 @@ echo $obj->pagination('students',null,null,$limit);
 
 ?>
 <style>
-ul{display:flex; list-style: none;}
-ul li {width:30px;height:30px;background-color:#ccc;color:#000; display:flex;justify-content: center;align-items:center;margin:2px;}
-ul li a{color:#000;text-decoration:none;font-size: 15px;}
+  ul{display:flex; list-style: none;}
+  ul li {width:30px;height:30px;background-color:#ccc;color:#000; display:flex;justify-content: center;align-items:center;margin:2px;}
+  ul li a{color:#000;text-decoration:none;font-size: 15px;}
 
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
 
 </style>
-
 <table>
-    <h1>Student Information</h1>
-<tr>
-    <th>Name</th>
-    <th>Age</th>
-    <th>City</th>
-</tr>
-<?php  
-
-foreach($result as list("id"=>$id,"student_name"=>$name,"age"=>$age,"city"=>$city)){  ?>  
-  <tr>
-    <td width="300"><?php echo $name; ?></td>
-    <td width="300"><?php echo $age; ?></td>
-    <td width="300"><?php echo $city; ?></td>
-
-</tr>
- <?php } ?> 
+      <h1>Student Information</h1>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>City</th>
+      </tr>
+      <?php  
+        foreach($result as list("id"=>$id,"student_name"=>$name,"age"=>$age,"city"=>$city)){  ?>  
+      <tr>
+        <td width="300"><?php echo $name; ?></td>
+        <td width="300"><?php echo $age; ?></td>
+        <td width="300"><?php echo $city; ?></td>
+      </tr>
+      <?php } ?> 
 </table>
